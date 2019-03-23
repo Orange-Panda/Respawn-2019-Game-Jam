@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 25
   speed: 15
-  jumpStrength: 350
+  jumps: 3
+  jumpStrength: 150
   fallStrength: 35

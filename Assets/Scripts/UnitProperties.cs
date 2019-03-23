@@ -10,6 +10,7 @@ public class UnitProperties : ScriptableObject
 
 	[Header("Movement Properties")]
 	public float speed;
+	public int jumps;
 	public float jumpStrength;
 	public float fallStrength;
 }

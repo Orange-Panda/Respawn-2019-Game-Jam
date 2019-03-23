@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-	private readonly float lookSensitivity = 2f, lookSmoothDampening = 0.1f;
+	private readonly float lookSensitivity = 2f, lookSmoothDampening = 0.025f;
 	private Vector2 rotation, current, rotationVelocity;
 
 	private void OnApplicationFocus(bool focus)
