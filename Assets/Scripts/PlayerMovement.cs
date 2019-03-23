@@ -22,11 +22,16 @@ public class PlayerMovement : MonoBehaviour
 		controlEnabled = value;
 	}
 
+	public bool GetEnabled()
+	{
+		return controlEnabled;
+	}
+
 	private bool IsGrounded
 	{
 		get
 		{
-			return Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.035f);
+			return Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.1f);
 		}
 	}
 
@@ -57,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		while(true)
 		{
-			if (IsGrounded && jumpsLeft < properties.jumps)
+			if (IsGrounded && jumpsLeft < properties.jumps && controlEnabled)
 			{
 				jumpsLeft++;
 				yield return new WaitForSeconds(0.25f);

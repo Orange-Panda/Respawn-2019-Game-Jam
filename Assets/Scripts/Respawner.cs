@@ -20,7 +20,7 @@ public class Respawner : MonoBehaviour
 
 		player.SetEnabled(false);
 
-		for(int i = 0; i < 60; i++)
+		for(int i = 0; i < 40; i++)
 		{
 			player.transform.position = Vector3.Lerp(player.transform.position, respawnPoint.transform.position, 0.1f);
 			rigidbody.velocity = new Vector3(0, 0, 0);
