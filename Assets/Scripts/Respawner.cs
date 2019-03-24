@@ -13,6 +13,7 @@ public class Respawner : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Player")
 		{
+			ScoreManager.AddScore(Mathf.CeilToInt(Mathf.Abs(ScoreManager.Score) * -0.1f) - 15);
 			StartCoroutine(ResetPosition(other));
 		}
 	}

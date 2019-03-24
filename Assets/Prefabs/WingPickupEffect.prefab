@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3358050654201511939}
   - component: {fileID: 8113292479094077758}
   m_Layer: 0
-  m_Name: Pickup
+  m_Name: WingPickupEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4813,7 +4813,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

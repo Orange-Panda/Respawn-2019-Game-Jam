@@ -40,6 +40,7 @@ public class JumpPickup : MonoBehaviour
 		{
 			player.AddJump();
 			Instantiate(pickupEffect, transform.position, transform.rotation);
+			ScoreManager.AddScore(1250);
 			Destroy(gameObject);
 		}
 	}

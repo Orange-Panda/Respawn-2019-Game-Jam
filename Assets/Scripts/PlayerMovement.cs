@@ -68,12 +68,12 @@ public class PlayerMovement : MonoBehaviour
 			CheckForJump();
 			CheckForMovement();
 		}
+		isGrounded = Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.1f); ;
 	}
 
 	private void FixedUpdate()
 	{
 		currentSpeed = Mathf.Lerp(currentSpeed, isGrounded ? properties.walkSpeed : properties.airSpeed, 0.1f);
-		isGrounded = Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.1f); ;
 	}
 
 	IEnumerator RegainJumps()
