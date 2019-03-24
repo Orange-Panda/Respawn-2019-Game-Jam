@@ -4861,7 +4861,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6072179133097092068
 MonoBehaviour:
@@ -4877,7 +4877,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupEffect: {fileID: 1797021608759331605, guid: 7384ec60a6b56eb4bbb34e32f71c6ec1,
     type: 3}
-  pickupSound: {fileID: 8300000, guid: 47e393afc53432c46baa10a93f35b249, type: 3}
 --- !u!114 &9015962530325237647
 MonoBehaviour:
   m_ObjectHideFlags: 0

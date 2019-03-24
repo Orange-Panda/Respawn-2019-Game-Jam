@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool controlEnabled = true;
 	private Collider[] colliders;
 	private int maxJumps;
+	private bool isGrounded;
 
 	internal void AddJump()
 	{
@@ -36,14 +37,6 @@ public class PlayerMovement : MonoBehaviour
 	public bool GetEnabled()
 	{
 		return controlEnabled;
-	}
-
-	private bool IsGrounded
-	{
-		get
-		{
-			return Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.1f);
-		}
 	}
 
 	public int GetJumps()
@@ -79,14 +72,15 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		currentSpeed = Mathf.Lerp(currentSpeed, IsGrounded ? properties.walkSpeed : properties.airSpeed, 0.1f);
+		currentSpeed = Mathf.Lerp(currentSpeed, isGrounded ? properties.walkSpeed : properties.airSpeed, 0.1f);
+		isGrounded = Physics.Raycast(transform.position, -Vector3.up, colliderDistance + 0.1f); ;
 	}
 
 	IEnumerator RegainJumps()
 	{
 		while(true)
 		{
-			if (IsGrounded && jumpsLeft < maxJumps && controlEnabled)
+			if (isGrounded && jumpsLeft < maxJumps && controlEnabled)
 			{
 				jumpsLeft++;
 				audioSource.PlayOneShot(properties.jumpRecoverySound);
@@ -103,13 +97,13 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(Input.GetButtonDown("Jump"))
 		{
-			if(jumpsLeft > 0 && !IsGrounded)
+			if(jumpsLeft > 0 && !isGrounded)
 			{
 				audioSource.PlayOneShot(properties.airJumpSound);
 				jumpsLeft--;
 				StartCoroutine(Jump());
 			}
-			else if(IsGrounded)
+			else if(isGrounded)
 			{
 				StartCoroutine(Jump());
 			}

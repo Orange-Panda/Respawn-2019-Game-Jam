@@ -11,7 +11,7 @@ public class BilboardText : MonoBehaviour
 
 	List<string> textEntries = new List<string>()
 	{
-		"You made it this far traveler, I am proud of you.\nBut you forgot your wings...",
+		"My king! You made it back from your travels!\nBut in your haste, you forgot your wings...\nYou must gather your feathers to get back to the castle before dusk!",
 		"I see you have found the first component of your wings.\nTry giving it a shot by pressing the jump button while in the air!",
 		"Great the second component!\nKeep this up and you will be back home in no time.",
 		"You might need a few more components before going to the castle.",
