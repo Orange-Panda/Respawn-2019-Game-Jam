@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   health: 25
-  speed: 15
-  jumps: 5
+  airSpeed: 15
+  walkSpeed: 6.5
+  jumps: 0
   jumpStrength: 150
   fallStrength: 35
+  jumpRecoveryTime: 0.2
+  jumpRecoverySound: {fileID: 8300000, guid: 59df42f3b4c5de1438c13f957e43cb81, type: 3}
+  groundJumpSound: {fileID: 0}
+  airJumpSound: {fileID: 8300000, guid: fe74035f2acc9264a9d46c9fec347351, type: 3}
+  landSound: {fileID: 0}
+  bounceSound: {fileID: 0}
+  noJumpsSound: {fileID: 8300000, guid: cf0a7302bc4f1804b9befe74240d7960, type: 3}

@@ -3,15 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages player movement input and execution.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private UnitProperties properties = null;
 	private MouseLook mouseLook;
 	private Rigidbody rb;
+	private AudioSource audioSource;
 	private float colliderDistance;
+	private float currentSpeed;
 	private int jumpsLeft;
 	private bool controlEnabled = true;
 	private Collider[] colliders;
+	private int maxJumps;
+
+	internal void AddJump()
+	{
+		maxJumps++;
+	}
 
 	public void SetEnabled(bool value)
 	{
@@ -40,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
 		return jumpsLeft;
 	}
 
+	public int GetMaxJumps()
+	{
+		return maxJumps;
+	}
+
 	private void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -47,6 +63,9 @@ public class PlayerMovement : MonoBehaviour
 		colliderDistance = GetComponent<Collider>().bounds.extents.y;
 		colliders = GetComponentsInChildren<Collider>();
 		StartCoroutine(RegainJumps());
+		audioSource = GetComponent<AudioSource>();
+		currentSpeed = properties.walkSpeed;
+		maxJumps = properties.jumps;
 	}
 
 	private void Update()
@@ -58,14 +77,20 @@ public class PlayerMovement : MonoBehaviour
 		}
 	}
 
+	private void FixedUpdate()
+	{
+		currentSpeed = Mathf.Lerp(currentSpeed, IsGrounded ? properties.walkSpeed : properties.airSpeed, 0.1f);
+	}
+
 	IEnumerator RegainJumps()
 	{
 		while(true)
 		{
-			if (IsGrounded && jumpsLeft < properties.jumps && controlEnabled)
+			if (IsGrounded && jumpsLeft < maxJumps && controlEnabled)
 			{
 				jumpsLeft++;
-				yield return new WaitForSeconds(0.25f);
+				audioSource.PlayOneShot(properties.jumpRecoverySound);
+				yield return new WaitForSeconds(properties.jumpRecoveryTime);
 			}
 			else
 			{
@@ -76,20 +101,31 @@ public class PlayerMovement : MonoBehaviour
 
 	private void CheckForJump()
 	{
-		if(Input.GetButtonDown("Jump") && jumpsLeft > 0)
+		if(Input.GetButtonDown("Jump"))
 		{
-			if (!IsGrounded)
+			if(jumpsLeft > 0 && !IsGrounded)
 			{
+				audioSource.PlayOneShot(properties.airJumpSound);
 				jumpsLeft--;
+				StartCoroutine(Jump());
 			}
-			StartCoroutine(Jump());
+			else if(IsGrounded)
+			{
+				StartCoroutine(Jump());
+			}
+			else
+			{
+				audioSource.PlayOneShot(properties.noJumpsSound);
+			}
 		}
 	}
 
 	private void CheckForMovement()
 	{
 		transform.rotation = Quaternion.Euler(0, mouseLook.CurrentRotation.y, 0);
-		Vector3 movement = (Input.GetAxis("Horizontal") * transform.right * properties.speed) + (Input.GetAxis("Vertical") * transform.forward * properties.speed);
+		Vector3 horizontal = Input.GetAxis("Horizontal") * transform.right * currentSpeed;
+		Vector3 vertical = Input.GetAxis("Vertical") * transform.forward * currentSpeed;
+		Vector3 movement = horizontal + vertical;
 		rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 	}
 

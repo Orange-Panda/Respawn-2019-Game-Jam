@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Draws the disabled HUD icon.
+/// </summary>
 public class HUDDisabled : MonoBehaviour
 {
 	Image image;

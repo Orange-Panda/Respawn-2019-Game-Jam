@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Pan the camera for first person perspective.
+/// </summary>
 public class MouseLook : MonoBehaviour
 {
 	private readonly float lookSensitivity = 2f, lookSmoothDampening = 0.025f;

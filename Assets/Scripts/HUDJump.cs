@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// Draws the wings HUD element.
+/// </summary>
 public class HUDJump : MonoBehaviour
 {
 	PlayerMovement player;
@@ -46,7 +49,7 @@ public class HUDJump : MonoBehaviour
 			image.sprite = basicWings;
 		}
 
-		image.rectTransform.localScale = Vector3.Lerp(image.rectTransform.localScale, targetScale, 0.1f);
+		image.rectTransform.localScale = Vector3.Lerp(image.rectTransform.localScale, targetScale, 0.5f);
 
 		image.color = jumps == 0 ? emptyColor : originalColor;
 	}
