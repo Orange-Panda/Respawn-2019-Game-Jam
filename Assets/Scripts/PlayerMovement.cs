@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private UnitProperties properties = null;
+
 	private MouseLook mouseLook;
 	private Rigidbody rb;
 	private AudioSource audioSource;
@@ -23,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
 	internal void AddJump()
 	{
 		maxJumps++;
+	}
+
+	internal void GiveMaxJumps()
+	{
+		jumpsLeft = maxJumps;
+		audioSource.PlayOneShot(properties.jumpRecoverySound);
 	}
 
 	public void SetEnabled(bool value)

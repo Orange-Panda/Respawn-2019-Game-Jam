@@ -5,6 +5,6 @@ Exhale		- https://freesound.org/people/carroll27/sounds/151920/
 Balloon Pop - https://freesound.org/people/franzzle/sounds/165871/
 
 [Tools]
-DOTween Pro 	- Animator
-TextMeshPro 	- Better Text Engine
-Unity Engine	- Game Engine
+[$12] DOTween Pro	- Animation Engine
+TextMeshPro 		- Better Text Engine
+Unity Engine		- Game Engine
